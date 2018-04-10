@@ -91,7 +91,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="<?php echo site_url('home/about')?>">About</a></li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Dropdown <span class="caret"></span></a>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Blog <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="<?php echo site_url('home/list')?>">List</a></li>
           <li><a href="<?php echo site_url('home/view')?>">View</a></li>
@@ -104,7 +104,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div id="container">
     <h1>Biodata Saya dari Array</h1>
       
-  <form action="<?php echo site_url('home/inputData')?>" method="post">
+  <?php echo form_open_multipart('home/inputData');?>
     <div class="form-group">
       <label for="id">Id:</label>
       <input type="text" class="form-control" id="id" name="id">

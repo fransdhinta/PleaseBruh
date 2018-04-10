@@ -91,7 +91,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="<?php echo site_url('home/about')?>">About</a></li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Dropdown <span class="caret"></span></a>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Blog <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="<?php echo site_url('home/list')?>">List</a></li>
           <li><a href="<?php echo site_url('home/view')?>">View</a></li>
@@ -105,17 +105,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <h1>Biodata Saya dari Array</h1>
       
     <div id="body">
-        <h2><?php foreach ($biodata_array as $key) {
+        <h2><?php foreach ($blog_array as $key) {
             ?>
-            <tr>
-              <td><?php echo $key['nama']?></td>
-            </tr>
-            <tr>
-              <td><?php echo $key['nim']?></td>
-            </tr>
-            <tr>
-              <td><?php echo $key['alamat']?></td>
-            </tr>
+                <?php 
+                  $increment = 3;
+                  if ($increment % 3 == 0) 
+                  {
+                   echo "<div class='container'>    
+                         <div class='row'>";
+                  }        
+                  
+                    echo "<div class='col-sm-4'>
+                          <div class='panel panel-primary'>
+                            <div class='panel-heading'>".$key['title']."</input></div>
+                            <div class='panel-body'><img src='<?php echo base_url(); ?>uploads/".$key['image_file']."' class='img-responsive' style='width:100%; height: 200px' alt='Image'></div>
+                            <div class='panel-heading'> ".$key['author']."</input></div>
+                            <div class='panel-footer'><input type='submit' value='Open'></input></div>
+                          </div>
+                          </div>";
+
+                  $increment = $increment + 1;
+
+                  if ($increment % 3 == 0) 
+                  {
+                    echo "</br>";
+                  }
+                ?>
           <?php } ?></h2>
     </div>
 

@@ -7,5 +7,17 @@ class Blog extends CI_Model
 	{
 		$this->db->insert($table,$data_blog);
 	}
+
+	public function getBlogQueryArray()
+	{
+		$query = $this->db->query("select * from blog");
+		return $query->result_array();
+	}
+
+	public function getBlogQueryObject()
+	{
+		$query = $this->db->query("select * from blog");
+		return $query->result();
+	}
 }
 ?>
