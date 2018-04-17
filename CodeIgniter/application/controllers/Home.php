@@ -58,7 +58,7 @@ class Home extends CI_Controller {
 		$image = $this->input->post('image');
 
 		$config['upload_path']		=	'./uploads/';
-		$config['allowed_types']	=	'gif|jpg|png';
+		$config['allowed_types']	=	'gif|jpg|png|jpeg';
 		$config['max_size']			=	1000000;
 		$config['max_width']		=	1920;
 		$config['max_height']		=	1080;
@@ -74,9 +74,8 @@ class Home extends CI_Controller {
 		else
 		{
 			$data = array('upload_data' => $this->upload->data());
-		}
 
-		$upload_data = $this->upload->data();
+			$upload_data = $this->upload->data();
 		$file_name = $upload_data['file_name'];
 
 		$data_blog = array
@@ -86,6 +85,9 @@ class Home extends CI_Controller {
 		 'title' => $title,
 		 'content' => $content,
 		 'image_file' => $file_name);
+		}
+
+		
 
 		$this->blog->input_data($data_blog,'blog');
 		redirect('home/create');
