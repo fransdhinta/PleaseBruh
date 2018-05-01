@@ -47,6 +47,12 @@ class Home extends CI_Controller {
 		
 	}
 
+	public function categories()
+	{
+		$this->load->view('categories');
+		
+	}
+
 	public function inputData()
 	{
 		$this->load->model('blog');
@@ -93,9 +99,19 @@ class Home extends CI_Controller {
 		redirect('home/create');
 	}
 
-	public function uploadFile()
+	public function inputCategories()
 	{
+		$this->load->model('categories');
+		$name = $this->input->post('cat_name');
+		$desc = $this->input->post('cat_description');
+		
+		$data_categories = array
+		('cat_name' => $name,
+		 'cat_description' => $desc);
+		
 
+		$this->categories->input_data($data_categories,'categories');
+		redirect('home/categories');
 	}
 
 	//======= AKHIR CRUD ========

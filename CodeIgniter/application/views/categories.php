@@ -79,7 +79,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <a class="navbar-brand" href="#">Fransdhinta D P</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="<?php echo site_url('home')?>">Home</a></li>
+      <li><a href="<?php echo site_url('home')?>">Home</a></li>
       <li><a href="<?php echo site_url('home/news')?>">News</a></li>      
       <li><a href="<?php echo site_url('home/contact')?>">Contact</a></li>
     </ul>
@@ -96,29 +96,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <li><a href="<?php echo site_url('home/list')?>">List</a></li>
           <li><a href="<?php echo site_url('home/view')?>">View</a></li>
           <li><a href="<?php echo site_url('home/categories')?>">Categories</a></li>
-          <li><a href="<?php echo site_url('home/create')?>">Create</a></li>
+          <li class="active"><a href="<?php echo site_url('home/create')?>">Create</a></li>
         </ul>
        </li>
     </ul>   
   </div>
 </nav>
     <div id="container">
-    <h1>Biodata Saya dari Array</h1>
+    <h1>Buat Kategori Baru</h1>
       
-    <div id="body">
-        <h2><?php foreach ($biodata_array as $key) {
-            ?>
-            <tr>
-              <td><?php echo $key['nama']?></td>
-            </tr>
-            <tr>
-              <td><?php echo $key['nim']?></td>
-            </tr>
-            <tr>
-              <td><?php echo $key['alamat']?></td>
-            </tr>
-          <?php } ?></h2>
+  <?php echo form_open_multipart('home/inputCategories');?>
+    <div class="form-group">
+      <label for="cat_name">Nama Kategori:</label>
+      <input type="text" class="form-control" id="cat_name" name="cat_name" value="<?php echo set_value('cat_name') ?>" required>
     </div>
+    <div class="form-group">
+      <label for="cat_desc">Deskrispi:</label>
+      <input type="text" class="form-control" id="cat_description" name="cat_description" value="<?php echo set_value('cat_description') ?>" required>
+    </div>
+    <div class="form-group">
+      <input type="submit" value="Submit" name="submit">
+    </div>  
+  </form>
 
     <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 </div>

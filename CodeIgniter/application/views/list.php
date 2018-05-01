@@ -95,6 +95,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <ul class="dropdown-menu">
           <li class="active"><a href="<?php echo site_url('home/list')?>">List</a></li>
           <li><a href="<?php echo site_url('home/view')?>">View</a></li>
+          <li><a href="<?php echo site_url('home/categories')?>">Categories</a></li>
           <li><a href="<?php echo site_url('home/create')?>">Create</a></li>
         </ul>
        </li>
@@ -111,15 +112,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $this->load->helper('html');
                   $increment = 3;
                   if ($increment % 3 == 0) 
-                  {
-                   echo "<div class='container'>    
-                         <div class='row'>";
+                  { ?>
+                         <div class='container'>    
+                         <div class='row'>
+                  <?php       
                   }        
                   
                     echo "<div class='col-sm-4'>
                           <div class='panel panel-primary'>
                             <div class='panel-heading'>".$key['title']."</input></div>
-                            <div class='panel-body'><img src='uploads/".$key['image_file']."' class='img-responsive' style='width:100%; height: 200px'></div>
+                            <div class='panel-body'><img src='".base_url()."uploads/".$key['image_file']."' class='img-responsive' style='width:100%; height: 200px'></div>
                             <div class='panel-heading'> ".$key['author']."</input></div>
                             <div class='panel-footer'><input type='submit' value='Open'></input></div>
                           </div>

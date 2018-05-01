@@ -95,6 +95,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <ul class="dropdown-menu">
           <li><a href="<?php echo site_url('home/list')?>">List</a></li>
           <li><a href="<?php echo site_url('home/view')?>">View</a></li>
+          <li><a href="<?php echo site_url('home/categories')?>">Categories</a></li>
           <li><a href="<?php echo site_url('home/create')?>">Create</a></li>
         </ul>
        </li>
