@@ -19,5 +19,15 @@ class Blog extends CI_Model
 		$query = $this->db->query("select * from blog");
 		return $query->result();
 	}
+
+	function data($number, $offset = 0)
+	{
+		return $query = $this->db->get('blog',$number,$offset)->result();
+	}
+
+	function jumlah_data()
+	{
+		return $this->db->get('blog')->num_rows();
+	}
 }
 ?>

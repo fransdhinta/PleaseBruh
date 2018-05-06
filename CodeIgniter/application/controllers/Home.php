@@ -29,6 +29,15 @@ class Home extends CI_Controller {
 	public function list()
 	{
 		$this->load->model('blog');
+		$this->load->database();
+		$jumlah_data = $this->blog->jumlah_data();
+		$this->load->library('pagination');
+		$config['base_url'] = base_url(). 'home/list/';
+		$config['total_rows'] = $jumlah_data;
+		$config['per_page'] = 6;
+		$from = $this->uri->segment(1);
+		$this->pagination->initialize($config);
+		$data['blog'] = $this->blog->data($config['per_page'].$from);
 		$data['blog_array']=$this->blog->getBlogQueryArray();
 		$data['blog_object']=$this->blog->getBlogQueryObject();
 		$this->load->view('list', $data);
