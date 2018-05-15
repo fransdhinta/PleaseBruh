@@ -34,7 +34,7 @@ class Home extends CI_Controller {
 		$this->load->library('pagination');
 		$config['base_url'] = base_url(). 'home/list/';
 		$config['total_rows'] = $jumlah_data;
-		$config['per_page'] = 6;
+		$config['per_page'] = 3;
 		$from = $this->uri->segment(1);
 		$this->pagination->initialize($config);
 		$data['blog'] = $this->blog->data($config['per_page'].$from);
@@ -45,8 +45,12 @@ class Home extends CI_Controller {
 
 	public function view()
 	{
-		$this->load->view('view');
+		$this->load->model('blog');
+		$data['datablog'] = $this->blog->getBlogQueryArray();
+		$this->load->view('view', $data);
 	}	
+
+	
 
 	//======= MULAI CRUD ========
 
