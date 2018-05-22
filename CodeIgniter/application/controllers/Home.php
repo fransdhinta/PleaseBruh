@@ -3,12 +3,56 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
 
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->helper(array('form','url'));
+	}
+
 	public function index()
 	{
 		$this->load->model('biodata');
 		$data['biodata_array']=$this->biodata->getBiodataQueryArray();
 		$data['biodata_object']=$this->biodata->getBiodataQueryObject();
 		$this->load->view('home',$data);
+	}
+
+	public function loginpage(){
+        if (isset($_POST['submit'])) {
+            $this->form_validation->set_rules('username','Username','required');
+            $this->form_validation->set_rules('password','Password','required');
+            if ($this->form_validation->run() == TRUE) {
+
+                $username = $_POST['username'];
+                $password = $_POST['password'];
+
+                $this->db->select('*');
+                $this->db->from('user');
+                $this->db->where(array('username' => $username, 'password' => $password));
+                $query = $this->db->get();
+
+                $user = $query->row();
+                if ($user->email) {
+                    $this->session->set_flashdata("success","You're Logged in");
+
+                    $_SESSION['user_logged'] =TRUE;
+                    $_SESSION['username'] = $user->username;
+
+                    redirect("home/userprofile", "refresh");
+                }else {
+                    $this->session->set_flashdata("error", "No data in database");
+                    redirect("home/login", "refresh");
+                }
+          
+            }
+        }
+        
+        $this->load->view('login');
+    }
+
+	public function userprofile()
+	{
+		$this->load->view('userprofile');
 	}
 
 	public function about()
@@ -63,6 +107,12 @@ class Home extends CI_Controller {
 	public function categories()
 	{
 		$this->load->view('categories');
+		
+	}
+
+	public function register()
+	{
+		$this->load->view('register');
 		
 	}
 
@@ -127,11 +177,25 @@ class Home extends CI_Controller {
 		redirect('home/categories');
 	}
 
+	public function userRegister()
+	{
+		$this->load->model('register');
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+		$email = $this->input->post('email');
+
+		$data_user = array
+		('username' => $username,
+		 'password' => $password,
+		 'email' => $email);
+		
+
+
+		$this->register->register_user($data_user,'user');
+		redirect('home/register');
+	}
+
 	//======= AKHIR CRUD ========
 
-	function __construct()
-	{
-		parent::__construct();
-		$this->load->helper(array('form','url'));
-	}
+	
 }
