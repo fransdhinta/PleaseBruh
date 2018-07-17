@@ -6,6 +6,7 @@ class Admin extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->model('addusers');
 		$this->load->helper(array('form','url'));
 	}
 
@@ -39,6 +40,14 @@ class Admin extends CI_Controller {
 		$this->load->model('blog');
 		$data['datablog'] = $this->blog->getBlogQueryArray();
 		$this->load->view('admin/view', $data);
+	}
+
+	public function user()
+	{
+		$this->load->view('admin/header');
+		$this->load->model('blog');
+		$data['datauser'] = $this->blog->getUserQueryArray();
+		$this->load->view('admin/user', $data);
 	}	
 
 	
@@ -58,6 +67,18 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/categories');
 		
 	}
+
+	public function adduser()
+	{
+		$this->load->view('admin/header');
+		$this->load->view('admin/adduser');
+	}
+
+	public function DeleteUser(){
+        $id = $this->input->post('id');
+        $this->addusers->DeleteData($id);
+        redirect('admin/user');
+    }
 
 	public function inputData()
 	{
@@ -118,6 +139,23 @@ class Admin extends CI_Controller {
 
 		$this->categories->input_data($data_categories,'categories');
 		redirect('admin/categories');
+	}
+
+	public function inputUser()
+	{
+		$this->load->model('addusers');
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+		$email = $this->input->post('email');
+		
+		$data_user = array
+		('username' => $username,
+		 'password' => $password,
+		 'email' => $email);
+		
+
+		$this->addusers->input_data($data_user,'user');
+		redirect('admin/adduser');
 	}
 
 	//======= AKHIR CRUD ========

@@ -84,6 +84,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <li class="active"><a href="<?php echo site_url('admin/home')?>">Home</a></li>
       <li><a href="<?php echo site_url('admin/list')?>">List</a></li>      
       <li><a href="<?php echo site_url('admin/view')?>">View</a></li>
+      <li><a href="<?php echo site_url('admin/user')?>">User</a></li>
     </ul>
     <div class="navbar-form navbar-left" action="/action_page.php">
         <div class="input-group">
@@ -94,6 +95,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Add<span class="caret"></span></a>
         <ul class="dropdown-menu">
+          <li><a href="<?php echo site_url('admin/adduser')?>">User</a></li>
           <li><a href="<?php echo site_url('admin/create')?>">Books</a></li>
           <li><a href="<?php echo site_url('admin/Categories')?>">Categories</a></li>
           <li><a href="<?php echo site_url('admin/logout')?>">Logout</a></li>
